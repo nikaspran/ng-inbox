@@ -1,9 +1,13 @@
+import '../googleUserButton/googleUserButtonComponent';
+
 import module from '../../appModule';
 const templateUrl = <string> require('./inboxTemplate.html');
 
 class InboxController {
-  constructor() {
-    console.log('Hello world x!');
+  constructor(public google) {
+    google.getThreads().then(threads => {
+      console.log(threads);
+    });
   }
 }
 
