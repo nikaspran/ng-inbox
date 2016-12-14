@@ -28,7 +28,7 @@ gulp.task('serve', () => {
     mountDevServer(app);
   }
 
-  app.listen(process.env.PORT);
+  app.listen(process.env.PORT || 9191);
 });
 
 gulp.task('test', done => {
