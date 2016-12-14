@@ -1,2 +1,3 @@
+<md-progress-circular ng-if="$ctrl.google.user === undefined" md-diameter="20px"></md-progress-circular>
 <md-button ng-if="$ctrl.google.user === null" ng-click="$ctrl.google.signIn()">Sign In</md-button>
 <md-button ng-if="$ctrl.google.user" ng-click="$ctrl.google.signOut()">Sign Out</md-button>

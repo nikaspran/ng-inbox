@@ -1,5 +1,5 @@
 <div layout="column" layout-fill>
-  <md-toolbar class="md-toolbar-tools">
+  <md-toolbar class="md-toolbar-tools" md-colors="{background: 'blue-600'}">
     <h1>ngInbox</h1>
 
     <span flex></span>
@@ -9,7 +9,11 @@
 
   <md-progress-linear ng-if="$ctrl.loading"></md-progress-linear>
 
-  <md-content flex md-colors="{background: 'grey-100'}">
+  <div layout="row" layout-fill layout-align="center center" ng-if="$ctrl.google.user === null">
+    <h2>Please Sign In</h2>
+  </div>
+
+  <md-content flex md-colors="{background: 'grey-100'}" ng-if="$ctrl.google.user">
     <div class="np-inbox_scrollable"
          infinite-scroll="$ctrl.loadMoreThreads()"
          infinite-scroll-container="'np-inbox md-content'">

@@ -1,10 +1,10 @@
 <md-card md-colors="{background: 'grey-A100'}">
-  <md-card-header ng-click="$ctrl.toggleDetails()">
-    <md-card-header-text>
-      <h3 class="md-title" ng-bind=":: $ctrl.getSubject($ctrl.getLastMessage())"></h3>
-      <p class="md-subhead" ng-bind-html=":: $ctrl.getSummary()" md-colors="{color: 'grey-A700'}"></p>
-    </md-card-header-text>
-  </md-card-header>
+  <md-list-item ng-click="$ctrl.toggleDetails()" aria-label="Toggle Message">
+    <div class="np-thread_summary md-list-item-text" layout-gt-xs="row">
+      <h3 class="md-body-2" flex-gt-xs="30" ng-bind=":: $ctrl.getSubject($ctrl.getLastMessage())"></h3>
+      <p class="md-body-1" flex-offset-gt-xs="5" flex-gt-xs="65" ng-bind-html=":: $ctrl.getSummary() + '...'" md-colors="{color: 'grey-A700'}"></p>
+    </div>
+  </md-list-item>
   <md-card-content ng-if="$ctrl.showDetails">
     <md-divider></md-divider>
     <md-list>

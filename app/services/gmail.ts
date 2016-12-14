@@ -17,7 +17,7 @@ class Gmail {
   }
 
   getBody(message) {
-    const text = this.deepFindWithMimeType([message.payload], 'text/html');
+    const text = this.deepFindWithMimeType([message.payload], 'text/html') || this.deepFindWithMimeType([message.payload], 'text/plain');
     return text && base64url.decode(text.body.data);
   }
 

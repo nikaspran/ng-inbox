@@ -37,6 +37,14 @@ describe('gmail', () => {
       };
       expect(gmail.getBody(message)).toEqual('Html Body');
     });
+    it('should fall back to a plain text body if no html body present', () => {
+      const message = {
+        payload: {
+          mimeType: 'text/plain', body: {data: base64url.encode('Plain Text Body')}
+        }
+      };
+      expect(gmail.getBody(message)).toEqual('Plain Text Body');
+    });
     it('should return the html body of a message with a simple structure', () => {
       const message = {
         payload: {

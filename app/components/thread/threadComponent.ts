@@ -1,5 +1,6 @@
 import module from '../../appModule';
 const templateUrl = <string> require('./threadTemplate.html');
+require('./thread.css');
 
 class ThreadController {
   public thread;

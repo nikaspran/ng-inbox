@@ -16,7 +16,7 @@ class InboxController {
   }
 
   loadMoreThreads() {
-    if (this.loading || this.finished) {
+    if (!this.google.user || this.loading || this.finished) {
       return;
     }
 
