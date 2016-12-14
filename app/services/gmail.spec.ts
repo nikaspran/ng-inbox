@@ -4,15 +4,13 @@ import base64url from 'base64url';
 describe('gmail', () => {
   let gmail;
 
-  beforeEach(angular.mock.module('np.app', ($provide) => {
-  }));
-
+  beforeEach(angular.mock.module('np.app'));
   beforeEach(inject((_gmail_) => {
     gmail = _gmail_;
   }));
 
   describe('getSubject()', () => {
-    it('should return the subject header', () => {
+    it('should return the "Subject" header', () => {
       const message = {
         payload: {
           headers: [
@@ -24,8 +22,17 @@ describe('gmail', () => {
       };
       expect(gmail.getSubject(message)).toEqual('Some Subject');
     });
-
-    // TODO else case
+    it('should return undefined if there is no "Subject" header', () => {
+      const message = {
+        payload: {
+          headers: [
+            {name: 'Something', value: 'Some Value'},
+            {name: 'Something Else', value: 'Some Value'}
+          ]
+        }
+      };
+      expect(gmail.getSubject(message)).toEqual(undefined);
+    });
   });
 
   describe('getBody()', () => {
