@@ -63,6 +63,17 @@ class Google {
       }));
   }
 
+  getMessagesByIds(ids) {
+    return this.whenReady.then(() => this.batchAll(ids.map(id => this.getMessage(id))));
+  }
+
+  private getMessage(id) {
+    return this.gapi.client.gmail.users.messages.get({
+      userId: 'me',
+      id
+    });
+  }
+
   private getThreadDetails(threadId) {
     return this.gapi.client.gmail.users.threads.get({
       userId: 'me',

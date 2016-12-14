@@ -1,7 +1,10 @@
 {
   "globalDependencies": {
     "angular": "registry:dt/angular#1.5.0+20161208205636",
-    "jquery": "registry:dt/jquery#1.10.0+20160929162922",
-    "typings": "file:./app/typings.d.ts"
+    "jasmine": "registry:dt/jasmine#2.5.0+20161119044246",
+    "jquery": "registry:dt/jquery#1.10.0+20160929162922"
+  },
+  "dependencies": {
+    "angular-mocks": "registry:dt/angular-mocks#1.5.0+20161206185711"
   }
 }

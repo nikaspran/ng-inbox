@@ -1,10 +1,11 @@
-import 'angular';
-import 'angular-material';
-
+import './vendor';
 import './components/inbox/inboxComponent';
+import './services/google';
+import './services/gmail';
 
 angular.module('np.inbox', [
   'np.app',
+  'ngSanitize',
   'ngMaterial'
 ]);
 

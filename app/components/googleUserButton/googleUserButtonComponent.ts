@@ -1,4 +1,3 @@
-import '../../services/google';
 import module from '../../appModule';
 const templateUrl = <string> require('./googleUserButtonTemplate.html');
 
