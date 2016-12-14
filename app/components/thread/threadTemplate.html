@@ -1,17 +1,23 @@
 <md-card md-colors="{background: 'grey-A100'}">
   <md-list-item ng-click="$ctrl.toggleDetails()" aria-label="Toggle Message">
     <div class="np-thread_summary md-list-item-text" layout-gt-xs="row">
-      <h3 class="md-body-2" flex-gt-xs="30" ng-bind=":: $ctrl.getSubject($ctrl.getLastMessage())"></h3>
-      <p class="md-body-1" flex-offset-gt-xs="5" flex-gt-xs="65" ng-bind-html=":: $ctrl.getSummary() + '...'" md-colors="{color: 'grey-A700'}"></p>
+      <h3 class="md-body-2" flex-gt-xs="30" ng-bind=":: $ctrl.gmail.getSubject($ctrl.getLastMessage())"></h3>
+      <p class="md-body-1" flex-offset-gt-xs="5" flex-gt-xs="65"
+         ng-bind-html=":: $ctrl.getSummary() + '...'"
+         md-colors="{color: 'grey-A700'}"></p>
     </div>
   </md-list-item>
+
   <md-card-content ng-if="$ctrl.showDetails">
     <md-divider></md-divider>
     <md-list>
       <md-list-item ng-repeat="message in $ctrl.thread.messages track by message.id">
-        <div class="md-list-item-text">
-          <h3 ng-bind=":: $ctrl.getSubject(message)"></h3>
-          <p ng-bind-html=":: $ctrl.getBody(message)"></p>
+        <div class="md-list-item-text" layout="column">
+          <h3 class="md-title" ng-bind=":: $ctrl.gmail.getSubject(message)"></h3>
+          <span class="md-subhead" md-colors="{color: 'grey-A700'}">From: {{:: $ctrl.gmail.getFrom(message)}}</span>
+          <span class="md-subhead" md-colors="{color: 'grey-A700'}">To: {{:: $ctrl.gmail.getTo(message)}}</span>
+
+          <p ng-bind-html=":: $ctrl.gmail.getBody(message)"></p>
         </div>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>

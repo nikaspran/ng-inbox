@@ -7,19 +7,11 @@ class ThreadController {
   public showDetails = false;
   public messages;
 
-  constructor(private gmail) {
-  }
-
-  getSubject(message) {
-    return this.gmail.getSubject(message);
+  constructor(public gmail) {
   }
 
   getSummary() {
     return this.getLastMessage().snippet;
-  }
-
-  getBody(message) {
-    return this.gmail.getBody(message);
   }
 
   toggleDetails() {

@@ -35,6 +35,58 @@ describe('gmail', () => {
     });
   });
 
+  describe('getFrom()', () => {
+    it('should return the "From" header', () => {
+      const message = {
+        payload: {
+          headers: [
+            {name: 'Something', value: 'Some Value'},
+            {name: 'From', value: 'Some Person <some@person.com>'},
+            {name: 'Something Else', value: 'Some Value'}
+          ]
+        }
+      };
+      expect(gmail.getFrom(message)).toEqual('Some Person <some@person.com>');
+    });
+    it('should return undefined if there is no "From" header', () => {
+      const message = {
+        payload: {
+          headers: [
+            {name: 'Something', value: 'Some Value'},
+            {name: 'Something Else', value: 'Some Value'}
+          ]
+        }
+      };
+      expect(gmail.getFrom(message)).toEqual(undefined);
+    });
+  });
+
+  describe('getTo()', () => {
+    it('should return the "To" header', () => {
+      const message = {
+        payload: {
+          headers: [
+            {name: 'Something', value: 'Some Value'},
+            {name: 'To', value: 'Some Person <some@person.com>'},
+            {name: 'Something Else', value: 'Some Value'}
+          ]
+        }
+      };
+      expect(gmail.getTo(message)).toEqual('Some Person <some@person.com>');
+    });
+    it('should return undefined if there is no "To" header', () => {
+      const message = {
+        payload: {
+          headers: [
+            {name: 'Something', value: 'Some Value'},
+            {name: 'Something Else', value: 'Some Value'}
+          ]
+        }
+      };
+      expect(gmail.getTo(message)).toEqual(undefined);
+    });
+  });
+
   describe('getBody()', () => {
     it('should return the html body of a message without nesting', () => {
       const message = {

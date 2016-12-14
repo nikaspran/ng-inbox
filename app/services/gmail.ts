@@ -16,6 +16,14 @@ class Gmail {
     return this.getHeaderValue(message, 'Subject');
   }
 
+  getFrom(message) {
+    return this.getHeaderValue(message, 'From');
+  }
+
+  getTo(message) {
+    return this.getHeaderValue(message, 'To');
+  }
+
   getBody(message) {
     const text = ( // TODO: optimise to only DFS once
       this.deepFindWithMimeType([message.payload], 'text/html') ||
