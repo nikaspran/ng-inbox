@@ -11,20 +11,22 @@ gulp.task('build:src', () => {
     .pipe(gulp.dest('dist/'));
 });
 
-
-function serve() {
-  const express = require('express');
-  return express();
-}
-
-gulp.task('serve', () => {
-  // TODO: production
+function mountDevServer(app) {
   const webpackDevMiddleware = require('webpack-dev-middleware');
-  const app = serve();
-
   app.use(webpackDevMiddleware(webpack(webpackConfig), {
     publicPath: webpackConfig.output.publicPath
   }));
+}
+
+gulp.task('serve', () => {
+  const express = require('express');
+  const app = express();
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('dist'));
+  } else {
+    mountDevServer(app);
+  }
 
   app.listen(process.env.PORT);
 });

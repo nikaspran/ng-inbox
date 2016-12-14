@@ -1,0 +1,6 @@
+web:
+  dockerfile: Dockerfile
+  build: .
+  command: gulp serve
+  ports:
+    - '9191:9191'

@@ -29,5 +29,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.GOOGLE_CLIENT_ID': JSON.stringify(process.env.GOOGLE_CLIENT_ID),
     })
-  ]
+  ].concat(process.env.NODE_ENV === 'production' ? [
+    new webpack.optimize.UglifyJsPlugin()
+  ] : [])
 };
