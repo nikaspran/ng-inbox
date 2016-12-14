@@ -3,16 +3,31 @@ import '../threads/threadsComponent';
 
 import module from '../../appModule';
 const templateUrl = <string> require('./inboxTemplate.html');
+require('./inbox.css');
 
 class InboxController {
-  public threads;
+  public threads = [];
   private nextPageToken;
+  public loading = false;
+  public finished = false;
 
   constructor(public google) {
-    google.getThreads().then(threads => {
-      this.nextPageToken = threads.nextPageToken;
-      this.threads = threads.threads;
-    });
+    this.loadMoreThreads();
+  }
+
+  loadMoreThreads() {
+    if (this.loading || this.finished) {
+      return;
+    }
+
+    this.loading = true;
+    this.google.getThreads(this.nextPageToken)
+      .then(response => {
+        this.finished = !response.nextPageToken;
+        this.nextPageToken = response.nextPageToken;
+        [].push.apply(this.threads, response.threads);
+      })
+      .finally(() => this.loading = false)
   }
 }
 

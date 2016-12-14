@@ -21,6 +21,7 @@ module.exports = {
     loaders: [
       {test: /\.html$/, loaders: ['ngtemplate', 'html']},
       {test: /\.ts$/, loaders: ['ng-annotate', 'ts-loader']},
+      {test: /\.css$/, loader: 'style!css'},
       {test: /app\/index\.html$/, loader: 'file?name=[name].[ext]'}
     ]
   },

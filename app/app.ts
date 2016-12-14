@@ -6,7 +6,8 @@ import './services/gmail';
 angular.module('np.inbox', [
   'np.app',
   'ngSanitize',
-  'ngMaterial'
+  'ngMaterial',
+  'infinite-scroll'
 ]);
 
 angular.bootstrap(document, ['np.inbox'], {strictDi: true});

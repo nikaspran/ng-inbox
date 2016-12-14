@@ -1,12 +1,19 @@
-<md-toolbar class="md-toolbar-tools">
-  <h1>ngInbox</h1>
+<div layout="column" layout-fill>
+  <md-toolbar class="md-toolbar-tools">
+    <h1>ngInbox</h1>
 
-  <span flex></span>
+    <span flex></span>
 
-  <np-google-user-button></np-google-user-button>
-</md-toolbar>
+    <np-google-user-button></np-google-user-button>
+  </md-toolbar>
 
-<md-content layout="row" layout-fill layout-padding layout-align="center center"
-            md-colors="{background: 'grey-100'}">
-  <np-threads flex-gt-xs="90" flex-gt-md="60" threads="$ctrl.threads"></np-threads>
-</md-content>
+  <md-progress-linear ng-if="$ctrl.loading"></md-progress-linear>
+
+  <md-content flex md-colors="{background: 'grey-100'}">
+    <div class="np-inbox_scrollable"
+         infinite-scroll="$ctrl.loadMoreThreads()"
+         infinite-scroll-container="'np-inbox md-content'">
+      <np-threads threads="$ctrl.threads"></np-threads>
+    </div>
+  </md-content>
+</div>

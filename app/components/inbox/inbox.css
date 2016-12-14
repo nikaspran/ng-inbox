@@ -1,0 +1,10 @@
+.np-inbox_scrollable {
+  margin: 0 auto;
+  max-width: 60%;
+}
+
+@media (max-width: 800px) {
+  .np-inbox_scrollable {
+    max-width: 90%;
+  }
+}

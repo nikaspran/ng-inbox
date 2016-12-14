@@ -54,7 +54,9 @@ class Google {
   getThreads(pageToken) {
     return this.whenReady.then(() => this.gapi.client.gmail.users.threads.list({
       userId: 'me',
-      pageToken
+      q: 'in:inbox',
+      pageToken,
+      maxResults: 20
     }))
       .then(response => response.result)
       .then(result => this.$q.all({
