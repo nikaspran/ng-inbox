@@ -1,5 +1,5 @@
 <div layout="column" layout-fill>
-  <md-toolbar class="md-toolbar-tools" md-colors="{background: 'blue-600'}">
+  <md-toolbar class="md-toolbar-tools" md-colors="{background: 'blue-600'}" md-whiteframe="4">
     <h1>ngInbox</h1>
 
     <span flex></span>
@@ -7,17 +7,17 @@
     <np-google-user-button></np-google-user-button>
   </md-toolbar>
 
-  <md-progress-linear ng-if="$ctrl.loading"></md-progress-linear>
-
   <div layout="row" layout-fill layout-align="center center" ng-if="$ctrl.google.user === null">
     <h2>Please Sign In</h2>
   </div>
 
-  <md-content flex md-colors="{background: 'grey-100'}" ng-if="$ctrl.google.user">
+  <md-content flex ng-if="$ctrl.google.user" md-colors="{background: 'grey-100'}"
+              layout="column" layout-align="start center" layout-padding="20">
     <div class="np-inbox_scrollable"
          infinite-scroll="$ctrl.loadMoreThreads()"
          infinite-scroll-container="'np-inbox md-content'">
       <np-threads threads="$ctrl.threads"></np-threads>
     </div>
+    <md-progress-circular class="np-inbox_progress-indicator" ng-if="$ctrl.loading"></md-progress-circular>
   </md-content>
 </div>
